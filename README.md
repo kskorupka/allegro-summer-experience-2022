@@ -50,4 +50,4 @@ If you would like to leave the app, write **Q** (without any white characters) a
 _Warning:_ **q** or any other message will not be recognised. The app will be trying to find its repository.  
 
 ## Comments
-Unfortunately, the application cannot deal with huge amount of requests due to the *rate limit*. If you have reached the limit, please wait for a while to use the application again.
+Unfortunately, the application cannot deal with an enormous amount of requests (5000 per hour) due to the *rate limit*. The application has been authorized with OAuth authorization. 
