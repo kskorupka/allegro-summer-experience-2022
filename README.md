@@ -25,7 +25,7 @@ If you want to leave the app, write 'Q' and press Enter**
   
 Write the username you are looking for and press the Enter button.  
 ![](readme_pictures/1.png)  
-If the user has a lot of repositories, waiting time may be greater than usual (in my case: 5-10 seconds to process around 50 repositories).
+If the user has a lot of repositories, waiting time may be greater than usual (in my case: 10-20 seconds to process around 50 repositories).
 ### 2. Read the result.
 ![](readme_pictures/2.png)  
 ![](readme_pictures/4.png)  
