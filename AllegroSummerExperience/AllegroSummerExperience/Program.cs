@@ -32,8 +32,8 @@ namespace AllegroSummerExperience
                         owner.FillLanguages(repositories);
                         WriteRepositories(repositories);
                         WriteOwnerData(owner);
-                    }
-                    Console.WriteLine("Press any button to continue");
+                        Console.WriteLine("Press any button to continue");
+                    }  
                 }
                 Console.ReadKey();
                 Console.Clear();
@@ -57,6 +57,7 @@ namespace AllegroSummerExperience
                 Console.Clear();
                 Console.WriteLine("Connection error");
                 Console.WriteLine(ex.Message);
+                Console.WriteLine("Press any button to continue");
                 return null;
             }
         }
@@ -77,6 +78,7 @@ namespace AllegroSummerExperience
                 Console.Clear();
                 Console.WriteLine("Connection error");
                 Console.WriteLine(ex.Message);
+                Console.WriteLine("Press any button to continue");
                 return null;
             }
 
@@ -92,7 +94,7 @@ namespace AllegroSummerExperience
             {
                 Console.WriteLine("name: " + repo.Name);
                 Console.WriteLine("language: " + repo.Language);
-                Console.WriteLine("bites of code: " + repo.Size.ToString());
+                Console.WriteLine("bytes of code: " + repo.Size.ToString());
                 Console.WriteLine();
             }
         }
@@ -106,7 +108,7 @@ namespace AllegroSummerExperience
             foreach (String language in owner.Languages.Keys)
             {
                 Console.WriteLine("language: " + language);
-                Console.WriteLine("bites of code: " + owner.Languages[language] + "\n");
+                Console.WriteLine("bytes of code: " + owner.Languages[language] + "\n");
             }
         }
     }
