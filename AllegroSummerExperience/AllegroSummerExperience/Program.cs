@@ -33,6 +33,7 @@ namespace AllegroSummerExperience
                         WriteRepositories(repositories);
                         WriteOwnerData(owner);
                     }
+                    Console.WriteLine("Press any button to continue");
                 }
                 Console.ReadKey();
                 Console.Clear();
