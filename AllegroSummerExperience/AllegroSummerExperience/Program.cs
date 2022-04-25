@@ -25,10 +25,13 @@ namespace AllegroSummerExperience
                     Console.Clear();
                     Owner owner = await ProcessOwner(response);
                     List<Repository> all_repositories = new List<Repository>();
-                    for (int i=1; i<= GetNumberOfPages(owner.NumberOfRepositories); i++)
+                    if(owner != null)
                     {
-                        List<Repository> repository = await ProcessRepos(response, i);
-                        if (repository != null) all_repositories.AddRange(repository);
+                        for (int i = 1; i <= GetNumberOfPages(owner.NumberOfRepositories); i++)
+                        {
+                            List<Repository> repository = await ProcessRepos(response, i);
+                            if (repository != null) all_repositories.AddRange(repository);
+                        }
                     }
                     if (all_repositories != null && owner != null)
                     {
