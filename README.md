@@ -1,10 +1,15 @@
 # allegro-summer-experience-2022
 My email in recruitment process: kskorupka01@gmail.com
 ## Instalation/Start-up
+### Using Visual Studio to open the project
 1. Clone the repository to your local environment
 2. Go to allegro-summer-experience-2022/AllegroSummerExperience/
 3. Open the AllegroSummerExperience.sln file using Visual Studio
-4. Run the project
+4. Run the project  
+### Using releases to run the .exe file
+1.
+2.
+
 ## How to use the app
 ### 1. Write the username
 In the command prompt you will see:  
