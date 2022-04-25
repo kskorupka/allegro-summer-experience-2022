@@ -12,7 +12,7 @@ My email in recruitment process: kskorupka01@gmail.com
 3. Click on *Releases.zip* and download it.
 4. Unzip the file in your local environment.
 5. Open the directory.
-6. Run the *AllegroSummerExperience.exe* file.
+6. Run the *AllegroSummerExperience.exe* file.  
 *Warning:* If your system will not allow you to open the file, go to advanced settings and allow your system to open the file.
 
 ## How to use the app
