@@ -1,6 +1,6 @@
 # allegro-summer-experience-2022
 My email in recruitment process: kskorupka01@gmail.com
-## Instalation/start-up
+## Instalation/Start-up
 1. Clone the repository to your local environment
 2. Go to allegro-summer-experience-2022/AllegroSummerExperience/
 3. Open the AllegroSummerExperience.sln file using Visual Studio
