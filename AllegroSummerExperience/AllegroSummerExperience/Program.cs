@@ -13,16 +13,16 @@ namespace AllegroSummerExperience
     internal class Program
     {
         private static readonly HttpClient client = new HttpClient();
-        private static async Task Main(string[] args)
+        private static async Task Main()
         {
-            writeWelcomeMessage();
+            WriteWelcomeMessage();
             String response;
             while ((response = Console.ReadLine()) != "Q")
             {
                 if (response != "")
                 {
                     Console.Clear();
-                    List<Repository> repositories = null;
+                    List<Repository> repositories;
                     Owner owner = null;
                     repositories = await ProcessRepos(response);
                     if (repositories != null ) owner = await ProcessOwner(response);
@@ -30,13 +30,13 @@ namespace AllegroSummerExperience
                     {
                         Console.WriteLine("List of " + response + "'s repositories:\n");
                         owner.FillLanguages(repositories);
-                        writeRepositories(repositories);
-                        writeOwnerData(owner);
+                        WriteRepositories(repositories);
+                        WriteOwnerData(owner);
                     }                     
                 }
                 Console.ReadKey();
                 Console.Clear();
-                writeWelcomeMessage();
+                WriteWelcomeMessage();
             }
         }
         private static async Task<List<Repository>> ProcessRepos(String username)
@@ -106,12 +106,12 @@ namespace AllegroSummerExperience
                 }
             }
         }
-        private static void writeWelcomeMessage()
+        private static void WriteWelcomeMessage()
         {
-            Console.WriteLine("Write username to get the repos and press Enter");
+            Console.WriteLine("Write username to get the repositories and press Enter");
             Console.WriteLine("If you want to leave the app, write 'Q' and press Enter");
         }
-        private static void writeRepositories(List<Repository> repositories)
+        private static void WriteRepositories(List<Repository> repositories)
         {
             foreach (var repo in repositories)
             {
@@ -121,7 +121,7 @@ namespace AllegroSummerExperience
                 Console.WriteLine();
             }
         }
-        private static void writeOwnerData(Owner owner)
+        private static void WriteOwnerData(Owner owner)
         {
             Console.WriteLine("User's data:");
             Console.WriteLine("login: " + owner.Login);
