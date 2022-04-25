@@ -25,14 +25,14 @@ namespace AllegroSummerExperience
                     List<Repository> repositories;
                     Owner owner = null;
                     repositories = await ProcessRepos(response);
-                    if (repositories != null ) owner = await ProcessOwner(response);
-                    if(repositories != null && owner != null)
+                    if (repositories != null) owner = await ProcessOwner(response);
+                    if (repositories != null && owner != null)
                     {
                         Console.WriteLine("List of " + response + "'s repositories:\n");
                         owner.FillLanguages(repositories);
                         WriteRepositories(repositories);
                         WriteOwnerData(owner);
-                    }                     
+                    }
                 }
                 Console.ReadKey();
                 Console.Clear();
@@ -50,7 +50,8 @@ namespace AllegroSummerExperience
                 var streamTask = client.GetStreamAsync("https://api.github.com/users/" + username + "/repos");
                 var repositories = await JsonSerializer.DeserializeAsync<List<Repository>>(await streamTask);
                 return repositories;
-            } catch (HttpRequestException ex)
+            }
+            catch (HttpRequestException ex)
             {
                 Console.Clear();
                 Console.WriteLine("Connection error");
@@ -69,42 +70,15 @@ namespace AllegroSummerExperience
                 var streamTask = client.GetStreamAsync("https://api.github.com/users/" + username);
                 var owner = await JsonSerializer.DeserializeAsync<Owner>(await streamTask);
                 return owner;
-            }catch (HttpRequestException ex)
+            }
+            catch (HttpRequestException ex)
             {
                 Console.Clear();
                 Console.WriteLine("Connection error");
                 Console.WriteLine(ex.Message);
                 return null;
             }
-            
-        }
-        public class Repository
-        {
-            [JsonPropertyName("name")]
-            public string Name { get; set; }
-            [JsonPropertyName("language")]
-            public string Language { get; set; }
-            [JsonPropertyName("size")]
-            public int Size { get; set; }
 
-        }
-        public class Owner
-        {
-            [JsonPropertyName("login")]
-            public string Login { get; set; }
-            [JsonPropertyName("name")]
-            public string Name { get; set; }
-            [JsonPropertyName("bio")]
-            public string Bio { get; set; }
-            public Dictionary<String, int> Languages = new Dictionary<string, int>();
-            public void FillLanguages(List<Repository> repos)
-            {
-                foreach(Repository repo in repos)
-                {
-                    if (repo.Language!= null && !Languages.ContainsKey(repo.Language)) Languages.Add(repo.Language, repo.Size);
-                    else if(repo.Language != null) Languages[repo.Language] += repo.Size;
-                }
-            }
         }
         private static void WriteWelcomeMessage()
         {
