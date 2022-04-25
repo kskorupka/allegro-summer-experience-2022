@@ -125,6 +125,7 @@ namespace AllegroSummerExperience
                         Console.WriteLine("language: " + language);
                         Console.WriteLine("bytes of code: " + repo.Languages[language] + "\n");
                     }
+                    Console.WriteLine("========================================");
                 }
                 Console.WriteLine();
             }
