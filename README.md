@@ -13,3 +13,7 @@ In the command prompt you will see:
 If you want to leave the app, write 'Q' and press Enter**  
   
 Write the username you are looking for and press the Enter button.  
+![](readme_pictures/1.png)  
+### 2. Read the result.
+
+
