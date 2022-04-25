@@ -24,13 +24,7 @@ namespace AllegroSummerExperience
                     List<Repository> repositories;
                     Owner owner = null;
                     repositories = await ProcessRepos(response);
-                    if (repositories != null)
-                    {
-                        owner = await ProcessOwner(response);
-                        FillLanguagesForRepository(repositories);
-
-
-                    }
+                    if (repositories != null) owner = await ProcessOwner(response);
                     if (repositories != null && owner != null)
                     {
                         Console.WriteLine("List of " + response + "'s repositories:\n");
@@ -55,6 +49,8 @@ namespace AllegroSummerExperience
                 client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
                 var streamTask = client.GetStreamAsync("https://api.github.com/users/" + username + "/repos");
                 var repositories = await JsonSerializer.DeserializeAsync<List<Repository>>(await streamTask);
+                foreach(Repository repository in repositories)
+                    repository.Languages = await ProcessLanguages(repository.Language_URL);
                 return repositories;
             }
             catch (HttpRequestException ex)
@@ -86,7 +82,6 @@ namespace AllegroSummerExperience
                 Console.WriteLine("Press any button to continue");
                 return null;
             }
-
         }
         private static async Task<Dictionary<String,int>> ProcessLanguages(String URL)
         {
@@ -109,11 +104,6 @@ namespace AllegroSummerExperience
                 return null;
             }
         }
-        public async static void FillLanguagesForRepository(List<Repository> repositories)
-        {
-            foreach (Repository repository in repositories)
-                repository.Languages = await ProcessLanguages(repository.Language_URL);
-        }
         private static void WriteWelcomeMessage()
         {
             Console.WriteLine("Write username to get the repositories and press Enter");
@@ -124,11 +114,11 @@ namespace AllegroSummerExperience
             foreach (var repo in repositories)
             {
                 Console.WriteLine("name: " + repo.Name);
+                Console.WriteLine("languages: \n");
                 foreach(String language in repo.Languages.Keys)
                 {
                     Console.WriteLine("language: " + language);
-                    Console.WriteLine("bytes of code: " + repo.Languages[language]);
-                    Console.WriteLine();
+                    Console.WriteLine("bytes of code: " + repo.Languages[language] + "\n");
                 }
                 Console.WriteLine();
             }

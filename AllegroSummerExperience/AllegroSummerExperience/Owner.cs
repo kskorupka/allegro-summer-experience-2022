@@ -18,7 +18,6 @@ namespace AllegroSummerExperience
         public Dictionary<String, int> Languages = new Dictionary<string, int>();
         public void FillLanguages(List<Repository> repos)
         {
-            
             foreach (Repository repo in repos)
             {
                 foreach (String language in repo.Languages.Keys)
