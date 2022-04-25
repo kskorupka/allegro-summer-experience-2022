@@ -27,7 +27,8 @@ Write the username you are looking for and press the Enter button.
 ![](readme_pictures/1.png)  
 ### 2. Read the result.
 ![](readme_pictures/2.png)  
-![](readme_pictures/4.png)
+![](readme_pictures/4.png)  
+
 Firstly, the list of the user's repositories will be shown. Each repository is described by name, list of languages and bites of code in used language.  
 Secondly, you will be able to see the user's important data: login, full name, bio and list of languages with bited of code in used language.  
 #### Errors occuring while processing repositories
