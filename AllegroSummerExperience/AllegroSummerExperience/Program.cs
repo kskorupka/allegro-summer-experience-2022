@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace AllegroSummerExperience
 {
@@ -25,7 +24,13 @@ namespace AllegroSummerExperience
                     List<Repository> repositories;
                     Owner owner = null;
                     repositories = await ProcessRepos(response);
-                    if (repositories != null) owner = await ProcessOwner(response);
+                    if (repositories != null)
+                    {
+                        owner = await ProcessOwner(response);
+                        FillLanguagesForRepository(repositories);
+
+
+                    }
                     if (repositories != null && owner != null)
                     {
                         Console.WriteLine("List of " + response + "'s repositories:\n");
@@ -83,6 +88,32 @@ namespace AllegroSummerExperience
             }
 
         }
+        private static async Task<Dictionary<String,int>> ProcessLanguages(String URL)
+        {
+            try
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
+                client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
+                var streamTask = client.GetStreamAsync(URL);
+                var languages = await JsonSerializer.DeserializeAsync<Dictionary<String,int>>(await streamTask);
+                return languages;
+            }
+            catch(HttpRequestException ex)
+            {
+                Console.Clear();
+                Console.WriteLine("Connection error");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press any button to continue");
+                return null;
+            }
+        }
+        public async static void FillLanguagesForRepository(List<Repository> repositories)
+        {
+            foreach (Repository repository in repositories)
+                repository.Languages = await ProcessLanguages(repository.Language_URL);
+        }
         private static void WriteWelcomeMessage()
         {
             Console.WriteLine("Write username to get the repositories and press Enter");
@@ -93,8 +124,12 @@ namespace AllegroSummerExperience
             foreach (var repo in repositories)
             {
                 Console.WriteLine("name: " + repo.Name);
-                Console.WriteLine("language: " + repo.Language);
-                Console.WriteLine("bytes of code: " + repo.Size.ToString());
+                foreach(String language in repo.Languages.Keys)
+                {
+                    Console.WriteLine("language: " + language);
+                    Console.WriteLine("bytes of code: " + repo.Languages[language]);
+                    Console.WriteLine();
+                }
                 Console.WriteLine();
             }
         }

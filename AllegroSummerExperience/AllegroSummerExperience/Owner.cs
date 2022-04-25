@@ -18,10 +18,14 @@ namespace AllegroSummerExperience
         public Dictionary<String, int> Languages = new Dictionary<string, int>();
         public void FillLanguages(List<Repository> repos)
         {
+            
             foreach (Repository repo in repos)
             {
-                if (repo.Language != null && !Languages.ContainsKey(repo.Language)) Languages.Add(repo.Language, repo.Size);
-                else if (repo.Language != null) Languages[repo.Language] += repo.Size;
+                foreach (String language in repo.Languages.Keys)
+                {
+                    if (language != null && !Languages.Keys.Contains(language)) Languages.Add(language, repo.Languages[language]);
+                    else if (language != null) Languages[language] += repo.Languages[language];
+                }
             }
         }
     }
