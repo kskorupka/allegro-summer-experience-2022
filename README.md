@@ -32,7 +32,9 @@ Write the username you are looking for and press the Enter button.
 Firstly, the list of the user's repositories will be shown. Each repository is described by name, list of languages and bytes of code in used language.  
 Secondly, you will be able to see the user's important data: login, full name, bio and list of languages with bytes of code in used language.  
 #### Errors occuring while processing repositories
-![](readme_pictures/3.png)  
+![](readme_pictures/3.png)
+![](readme_pictures/5.png)  
+![](readme_pictures/6.png)  
 If you see such error, there are two likely situations:
 1. Given username was incorrect, so the application is not able to find such user.
 2. You may have connection problems.
