@@ -7,8 +7,12 @@ My email in recruitment process: kskorupka01@gmail.com
 3. Open the AllegroSummerExperience.sln file using Visual Studio
 4. Run the project  
 ### Using releases to run the .exe file
-1.
-2.
+1. Go to releases section (you may find it on the rigth side in this repository).
+2. Expand the Assets.
+3. Click on *Releases.zip* and download it.
+4. Unzip the file in your local environment.
+5. Open the directory.
+6. Run the *AllegroSummerExperience.exe* file.
 
 ## How to use the app
 ### 1. Write the username
