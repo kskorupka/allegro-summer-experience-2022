@@ -14,6 +14,8 @@ namespace AllegroSummerExperience
         private static readonly HttpClient client = new HttpClient();
         private static async Task Main()
         {
+            //Authorization
+            client.DefaultRequestHeaders.Add("Authorization", "Basic " + System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes("fbebb3bf766b8408be30" + ":" + "8eb82bc12ba37a1ac0b55e8d97944f5c3517b8ca")));
             WriteWelcomeMessage();
             String response;
             while ((response = Console.ReadLine()) != "Q")
