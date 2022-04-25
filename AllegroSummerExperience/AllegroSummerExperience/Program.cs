@@ -115,12 +115,16 @@ namespace AllegroSummerExperience
         {
             foreach (var repo in repositories)
             {
-                Console.WriteLine("name: " + repo.Name);
-                Console.WriteLine("languages: \n");
-                foreach(String language in repo.Languages.Keys)
+                Console.WriteLine("repository name: " + repo.Name);
+                Console.WriteLine("used languages: \n");
+                if (repo.Languages.Keys.Count == 0) Console.WriteLine("None");
+                else
                 {
-                    Console.WriteLine("language: " + language);
-                    Console.WriteLine("bytes of code: " + repo.Languages[language] + "\n");
+                    foreach (String language in repo.Languages.Keys)
+                    {
+                        Console.WriteLine("language: " + language);
+                        Console.WriteLine("bytes of code: " + repo.Languages[language] + "\n");
+                    }
                 }
                 Console.WriteLine();
             }
@@ -132,10 +136,14 @@ namespace AllegroSummerExperience
             Console.WriteLine("full name: " + owner.Name);
             Console.WriteLine("bio: " + owner.Bio);
             Console.WriteLine("used languages: \n");
-            foreach (String language in owner.Languages.Keys)
+            if(owner.Languages.Keys.Count == 0) Console.WriteLine("None");
+            else
             {
-                Console.WriteLine("language: " + language);
-                Console.WriteLine("bytes of code: " + owner.Languages[language] + "\n");
+                foreach (String language in owner.Languages.Keys)
+                {
+                    Console.WriteLine("language: " + language);
+                    Console.WriteLine("bytes of code: " + owner.Languages[language] + "\n");
+                }
             }
         }
     }
