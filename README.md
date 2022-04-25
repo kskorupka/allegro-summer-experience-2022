@@ -1,5 +1,6 @@
 # allegro-summer-experience-2022
-My email in recruitment process: kskorupka01@gmail.com
+My email in recruitment process: kskorupka01@gmail.com  
+Chosen exercise: **Zadanie nr 3. Software Engineer / Data Platform Engineer / .NET Software Engineer / DevOps Engineer**
 ## Instalation/Start-up
 ### Using Visual Studio to open the project
 1. Clone the repository to your local environment
