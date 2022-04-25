@@ -38,6 +38,7 @@ Secondly, you will be able to see the user's important data: login, full name, b
 If you see such error, there are two likely situations:
 1. Given username was incorrect, so the application is not able to find such user.
 2. You may have connection problems.
+3. Rate limit has been reached.
 
 Make sure that none of this situations may happen. Please, press any button and try again.
 
