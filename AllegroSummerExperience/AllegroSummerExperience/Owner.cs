@@ -16,6 +16,8 @@ namespace AllegroSummerExperience
         [JsonPropertyName("bio")]
         public string Bio { get; set; }
         public Dictionary<String, int> Languages = new Dictionary<string, int>();
+        [JsonPropertyName("public_repos")]
+        public int NumberOfRepositories { get; set; }
         public void FillLanguages(List<Repository> repos)
         {
             foreach (Repository repo in repos)

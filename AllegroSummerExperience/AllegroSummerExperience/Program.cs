@@ -23,15 +23,18 @@ namespace AllegroSummerExperience
                 if (response != "")
                 {
                     Console.Clear();
-                    List<Repository> repositories;
-                    Owner owner = null;
-                    repositories = await ProcessRepos(response);
-                    if (repositories != null) owner = await ProcessOwner(response);
-                    if (repositories != null && owner != null)
+                    Owner owner = await ProcessOwner(response);
+                    List<Repository> all_repositories = new List<Repository>();
+                    for (int i=1; i<= GetNumberOfPages(owner.NumberOfRepositories); i++)
+                    {
+                        List<Repository> repository = await ProcessRepos(response, i);
+                        if (repository != null) all_repositories.AddRange(repository);
+                    }
+                    if (all_repositories != null && owner != null)
                     {
                         Console.WriteLine("List of " + response + "'s repositories:\n");
-                        owner.FillLanguages(repositories);
-                        WriteRepositories(repositories);
+                        owner.FillLanguages(all_repositories);
+                        WriteRepositories(all_repositories);
                         WriteOwnerData(owner);
                         Console.WriteLine("Press any button to continue");
                     }  
@@ -41,7 +44,7 @@ namespace AllegroSummerExperience
                 WriteWelcomeMessage();
             }
         }
-        private static async Task<List<Repository>> ProcessRepos(String username)
+        private static async Task<List<Repository>> ProcessRepos(String username, int page)
         {
             try
             {
@@ -49,7 +52,7 @@ namespace AllegroSummerExperience
                 client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
                 client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
-                var streamTask = client.GetStreamAsync("https://api.github.com/users/" + username + "/repos");
+                var streamTask = client.GetStreamAsync("https://api.github.com/users/" + username + "/repos?page=" + page);
                 var repositories = await JsonSerializer.DeserializeAsync<List<Repository>>(await streamTask);
                 foreach(Repository repository in repositories)
                     repository.Languages = await ProcessLanguages(repository.Language_URL);
@@ -125,8 +128,8 @@ namespace AllegroSummerExperience
                         Console.WriteLine("language: " + language);
                         Console.WriteLine("bytes of code: " + repo.Languages[language] + "\n");
                     }
-                    Console.WriteLine("========================================");
                 }
+                Console.WriteLine("========================================");
                 Console.WriteLine();
             }
         }
@@ -146,6 +149,11 @@ namespace AllegroSummerExperience
                     Console.WriteLine("bytes of code: " + owner.Languages[language] + "\n");
                 }
             }
+        }
+        private static int GetNumberOfPages(int NumberOfRepositories)
+        {
+            if (NumberOfRepositories % 30 == 0) return NumberOfRepositories / 30;
+            else return NumberOfRepositories / 30 + 1;
         }
     }
 }
