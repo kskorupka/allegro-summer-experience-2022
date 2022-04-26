@@ -44,7 +44,8 @@ If you see such error, there are three likely situations:
 Make sure that none of this situations may happen. Please, press any button and try again.
 
 ### 3. Press any button.
-If you would like to review another user, press any button and follow the **1st instruction**.
+If you would like to review another user, press any button and follow the **1st instruction**.  
+_Warning:_ If you press 'Q', the app will close automatically.
 
 ### 4. Leave the application.
 If you would like to leave the app, write **Q** (without any white characters) and press the Enter.  
