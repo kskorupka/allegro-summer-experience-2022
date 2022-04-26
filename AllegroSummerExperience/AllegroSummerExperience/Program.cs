@@ -9,9 +9,18 @@ using System.Text.Json;
 
 namespace AllegroSummerExperience
 {
+    /// <summary>
+    /// Class <c>Program</c> is used to perform the solution
+    /// <remarks>Uses Repository and Owner classes</remarks>
+    /// <seealso cref="Owner"/>
+    /// <seealso cref="Repository"/>
+    /// </summary>
     internal class Program
     {
         private static readonly HttpClient client = new HttpClient();
+        /// <summary>
+        /// Main function
+        /// </summary>
         private static async Task Main()
         {
             //Authorization
@@ -27,7 +36,7 @@ namespace AllegroSummerExperience
                     List<Repository> all_repositories = new List<Repository>();
                     if(owner != null)
                     {
-                        for (int i = 1; i <= GetNumberOfPages(owner.NumberOfRepositories); i++)
+                        for (int i = 1; i <= GetCountOfPages(owner.CountOfRepositories); i++)
                         {
                             List<Repository> repository = await ProcessRepos(response, i);
                             if (repository != null) all_repositories.AddRange(repository);
@@ -47,6 +56,13 @@ namespace AllegroSummerExperience
                 WriteWelcomeMessage();
             }
         }
+        /// <summary>
+        /// This function is used to process all repositories on given page
+        /// </summary>
+        /// <param name="username">user's name</param>
+        /// <param name="page">given page</param>
+        /// <returns>list of all repositories from given page</returns>
+        /// <exception cref="HttpRequestException"></exception>
         private static async Task<List<Repository>> ProcessRepos(String username, int page)
         {
             try
@@ -70,6 +86,12 @@ namespace AllegroSummerExperience
                 return null;
             }
         }
+        /// <summary>
+        /// This function is used to gather all important data about the user
+        /// </summary>
+        /// <param name="username">user's name</param>
+        /// <returns>User(Repositories' owner)</returns>
+        /// <exception cref="HttpRequestException"></exception>
         private static async Task<Owner> ProcessOwner(String username)
         {
             try
@@ -91,6 +113,12 @@ namespace AllegroSummerExperience
                 return null;
             }
         }
+        /// <summary>
+        /// This function is used to get all languages of one repository
+        /// </summary>
+        /// <param name="URL">"languages_url" in repository</param>
+        /// <returns>Dictionary<String,int> where language is the key and bytes of code is the value</String></returns>
+        /// <exception cref="HttpRequestException"></exception>
         private static async Task<Dictionary<String,int>> ProcessLanguages(String URL)
         {
             try
@@ -112,11 +140,18 @@ namespace AllegroSummerExperience
                 return null;
             }
         }
+        /// <summary>
+        /// Function that prints welcome messages
+        /// </summary>
         private static void WriteWelcomeMessage()
         {
             Console.WriteLine("Write username to get the repositories and press Enter");
             Console.WriteLine("If you want to leave the app, write 'Q' and press Enter");
         }
+        /// <summary>
+        /// Function that prints all repositories with used languages and bytes of code in each language
+        /// </summary>
+        /// <param name="repositories">List of repositories</param>
         private static void WriteRepositories(List<Repository> repositories)
         {
             foreach (var repo in repositories)
@@ -136,6 +171,10 @@ namespace AllegroSummerExperience
                 Console.WriteLine();
             }
         }
+        /// <summary>
+        /// Function that prints all user's important data with used languages and bytes of code in each language
+        /// </summary>
+        /// <param name="owner"></param>
         private static void WriteOwnerData(Owner owner)
         {
             Console.WriteLine("User's data:");
@@ -153,10 +192,15 @@ namespace AllegroSummerExperience
                 }
             }
         }
-        private static int GetNumberOfPages(int NumberOfRepositories)
+        /// <summary>
+        /// Function that counts how many repository pages user has
+        /// </summary>
+        /// <param name="CountOfRepositories">Count of user's repositories</param>
+        /// <returns>Count of pages</returns>
+        private static int GetCountOfPages(int CountOfRepositories)
         {
-            if (NumberOfRepositories % 30 == 0) return NumberOfRepositories / 30;
-            else return NumberOfRepositories / 30 + 1;
+            if (CountOfRepositories % 30 == 0) return CountOfRepositories / 30;
+            else return CountOfRepositories / 30 + 1;
         }
     }
 }

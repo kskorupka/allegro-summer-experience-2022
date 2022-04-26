@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace AllegroSummerExperience
 {
+    /// <summary>
+    /// Class used to represent one repository
+    /// </summary>
     public class Repository
     {
         [JsonPropertyName("name")]
