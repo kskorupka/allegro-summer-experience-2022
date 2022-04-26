@@ -10,7 +10,8 @@ using System.Text.Json;
 namespace AllegroSummerExperience
 {
     /// <summary>
-    /// Class <c>Program</c> is used to perform the solution
+    /// Class <c>Program</c> is used to perform the solution. To gather all information
+    /// I'm using https://api.github.com/ to get all user's repositories.
     /// <remarks>Uses Repository and Owner classes</remarks>
     /// <seealso cref="Owner"/>
     /// <seealso cref="Repository"/>
