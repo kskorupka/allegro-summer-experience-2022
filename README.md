@@ -8,7 +8,7 @@ Chosen exercise: **Zadanie nr 3. Software Engineer / Data Platform Engineer / .N
 3. Open the AllegroSummerExperience.sln file using Visual Studio (my version: Visual Studio 2022)
 4. Run the project  
 ### Using Releases to run the .exe file
-1. Go to releases section (you may find it on the right side in this repository).
+1. Go to Releases section (you may find it on the right side in this repository).
 2. Expand the Assets.
 3. Click on *AllegroSummerExperience.zip* and download it.
 4. Unzip the file in your local environment.
