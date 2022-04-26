@@ -51,4 +51,4 @@ If you would like to leave the app, write **Q** (without any white characters) a
 _Warning:_ **q** or any other message will not be recognised. The app will be trying to find its repository.  
 
 ## Comments
-Unfortunately, the application cannot deal with an enormous amount of requests (5000 per hour) due to the *rate limit*. The application has been authorized with OAuth authorization. 
+My solution uses the https://api.github.com/ to gather all information about the user. Unfortunately, the application cannot deal with an enormous amount of requests (5000 per hour) due to the *rate limit*. The application has been authorized with OAuth authorization. 
