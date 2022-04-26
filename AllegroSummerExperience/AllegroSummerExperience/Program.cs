@@ -52,7 +52,7 @@ namespace AllegroSummerExperience
                         Console.WriteLine("Press any button to continue");
                     }  
                 }
-                Console.ReadKey();
+                if(Console.ReadKey().KeyChar == 'Q') break;
                 Console.Clear();
                 WriteWelcomeMessage();
             }
